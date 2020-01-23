@@ -1,12 +1,14 @@
 import React from 'react';
 
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+
+import RepositoriesHeader from '~/components/Headers/Repositories';
 
 // import { Container } from './styles';
 
 const Repositories = () => (
   <View>
-    <Text>Repositories</Text>
+    <RepositoriesHeader title="GitIssues" />
   </View>
 );
 
