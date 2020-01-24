@@ -44,13 +44,43 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   listContainer: {
-    padding: metrics.basePadding,
+    paddingLeft: metrics.basePadding,
+    marginLeft: metrics.basePadding,
   },
   loading: {
     marginTop: metrics.baseMargin * 2,
   },
   placeholder: {
     color: colors.regular,
+  },
+  author: {
+    color: colors.regular,
+    fontSize: 14,
+  },
+  avatar: {
+    width: 50,
+    height: 50,
+  },
+  containerList: {
+    alignItems: 'center',
+    borderRadius: metrics.baseRadius,
+    backgroundColor: colors.white,
+    flexDirection: 'row',
+    marginBottom: metrics.baseMargin,
+    padding: metrics.basePadding,
+  },
+  icon: {
+    color: colors.light,
+  },
+  infoContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    marginLeft: metrics.baseMargin,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 3,
   },
 });
 
