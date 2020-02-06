@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import { withNavigation } from 'react-navigation';
+// import { withNavigation } from 'react-navigation';
+import PropTypes from 'prop-types';
 import {
   View,
   TouchableOpacity,
@@ -44,6 +45,16 @@ export default class Repositories extends Component {
     });
   };
 
+  capitalize = () => {
+    const { repositoryInput } = this.state;
+    let newName = '';
+    for (let i = 0; i < repositoryInput.length; i += 1) {
+      if (i === 0) newName += repositoryInput.charAt(0).toUpperCase();
+      else newName += repositoryInput.charAt(i);
+    }
+    return newName;
+  };
+
   addRepository = async () => {
     const { repositoryInput, repositories, loadingList } = this.state;
 
@@ -57,7 +68,9 @@ export default class Repositories extends Component {
     }
 
     if (
-      repositories.find(repository => repository.full_name === repositoryInput)
+      repositories.find(
+        repository => repository.full_name === this.capitalize()
+      )
     ) {
       this.setState({
         error: 'o repositorio ja foi adicionado',
@@ -91,8 +104,13 @@ export default class Repositories extends Component {
     }
   };
 
+  checkIssues = () => {
+    const { navigation } = this.props;
+    navigation.navigate('Issues');
+  };
+
   renderListItem = ({ item }) => (
-    <TouchableOpacity style={styles.containerList} onPress={() => {}}>
+    <TouchableOpacity style={styles.containerList} onPress={this.checkIssues}>
       <Image style={styles.avatar} source={{ uri: item.avatar }} />
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{item.organization}</Text>
@@ -155,4 +173,9 @@ export default class Repositories extends Component {
       </View>
     );
   }
+}
+Repositories.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func,
+  }).isRequired,
 }
